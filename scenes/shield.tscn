@@ -1,11 +1,33 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://shield.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=4]
+height = 180.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+height = 25.0
 
 [node name="Shield" index="0" instance=ExtResource( 1 )]
 collision_mask = 14
 script = null
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 3.5, 0.25 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, -6 )
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2"]
+position = Vector2( -103, 0 )
+rotation = 1.06465
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="3"]
+position = Vector2( 103, 0 )
+rotation = -1.06465
+shape = SubResource( 3 )
 
