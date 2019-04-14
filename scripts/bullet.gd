@@ -1,17 +1,27 @@
-extends KinematicBody2D
+extends 'res://scripts/kinematic_entity.gd'
 
-var motion = Vector2()
-
-func _physics_process(delta):
-	move_and_slide(motion)
+signal reflect_off_shield
 
 func launch(direction, speed = 1, ttl = 10):
-	motion = direction * speed
+	set_motion(direction * speed)
 	var timer = Timer.new()
-	timer.connect("timeout", self, "_on_ttl_expired") 
+	timer.connect("timeout", self, "destroy") 
 	add_child(timer)
 	timer.start(ttl)
 
-func _on_ttl_expired():
-	get_parent().remove_child(self)
-	queue_free()
+func _on_collision(collision):
+	._on_collision(collision)
+	var other = collision.get_collider()
+	
+	if other.has_method('on_receive_collision'):
+		other.on_receive_collision(self)
+	
+	if other.name == 'Shield':
+		_reflect(collision)
+	else:
+		destroy()
+
+func _reflect(collision):
+	_motion = _motion.bounce(collision.normal) * 4
+	translate(collision.remainder.bounce(collision.normal))
+	emit_signal('reflect_off_shield')

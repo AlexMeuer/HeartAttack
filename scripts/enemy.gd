@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends 'res://scripts/kinematic_entity.gd'
 
 export var bullet_prototype = preload("res://scenes/bullet.tscn")
 export var gun_cooldown = 0.1
