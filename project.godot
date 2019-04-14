@@ -19,6 +19,11 @@ config/name="HeartAttack"
 run/main_scene="res://scenes/game.tscn"
 config/icon="res://art/icon.png"
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
