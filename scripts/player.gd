@@ -1,6 +1,6 @@
 extends 'res://scripts/kinematic_entity.gd'
 
-const SPEED = 500
+const SPEED = 250
 
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
