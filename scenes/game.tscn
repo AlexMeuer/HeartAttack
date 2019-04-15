@@ -15,20 +15,22 @@ position = Vector2( 768, 480 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="AreaAnalogLeft" type="Control" parent="UI"]
-margin_right = 512.0
-margin_bottom = 600.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 960.0
+margin_bottom = 1082.0
 
 [node name="Analog" parent="UI/AreaAnalogLeft" instance=ExtResource( 3 )]
-position = Vector2( 112, 496 )
+position = Vector2( 168, 916 )
 isDynamicallyShowing = true
 
 [node name="AreaAnalogRight" type="Control" parent="UI"]
-margin_left = 512.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_left = 978.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
 [node name="Analog" parent="UI/AreaAnalogRight" instance=ExtResource( 3 )]
-position = Vector2( 400, 496 )
+position = Vector2( 808, 948 )
 isDynamicallyShowing = true
 
 [connection signal="force_changed" from="UI/AreaAnalogLeft/Analog" to="Player" method="on_left_analog_changed"]

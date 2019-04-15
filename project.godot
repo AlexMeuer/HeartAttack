@@ -19,6 +19,15 @@ config/name="HeartAttack"
 run/main_scene="res://scenes/game.tscn"
 config/icon="res://art/icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=960
+window/size/test_height=540
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
