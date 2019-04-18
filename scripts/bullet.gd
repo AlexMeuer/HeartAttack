@@ -4,12 +4,9 @@ const REFLECTED_COLLISION_LAYER = 6
 
 signal reflect_off_shield
 
-func launch(direction, speed = 1, ttl = 10):
+func launch(direction, speed = 1):
 	set_motion(direction * speed)
-	var timer = Timer.new()
-	timer.connect("timeout", self, "destroy") 
-	add_child(timer)
-	timer.start(ttl)
+	$VisibilityNotifier2D.connect('screen_exited', self, 'destroy')
 
 func _on_collision(collision):
 	._on_collision(collision)

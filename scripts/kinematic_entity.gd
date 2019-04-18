@@ -17,5 +17,6 @@ func set_motion(velocity):
 	_motion = velocity
 
 func destroy():
-	get_parent().remove_child(self)
+	# It turns out queue_free is enough. Removing the child like this can cause the game to hard-crash!
+	#get_parent().remove_child(self)
 	queue_free()

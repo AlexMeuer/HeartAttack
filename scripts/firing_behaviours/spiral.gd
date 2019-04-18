@@ -5,6 +5,6 @@ export var angle = 0
 
 func _shoot():
 	var bullet = _create_bullet()
-	bullet.launch(Vector2(cos(angle),sin(angle)), launch_speed)
+	bullet.launch(Vector2(cos(angle), sin(angle)), launch_speed)
 	angle += angle_increment
 	_attach_to_root(bullet)

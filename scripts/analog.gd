@@ -10,7 +10,6 @@ var ball
 var bg 
 var animation_player
 var parent
-var listenerNode
 
 var centerPoint = Vector2(0,0)
 var currentForce = Vector2(0,0)

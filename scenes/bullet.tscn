@@ -3,15 +3,14 @@
 [ext_resource path="res://scripts/bullet.gd" type="Script" id=1]
 [ext_resource path="res://art/icon.png" type="Texture" id=2]
 
-
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
 
 func set_modulate(color):
 	modulate = color
 "
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 16.0
 
 [node name="Bullet" type="KinematicBody2D"]
@@ -23,12 +22,16 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -3.8147e-006, 1.90735e-006 )
+position = Vector2( -3.8147e-06, 1.90735e-06 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -5.06639e-06, 2.38419e-06 )
+scale = Vector2( 1.6, 1.6 )
 
 [connection signal="reflect_off_shield" from="." to="Sprite" method="set_modulate" flags=6 binds= [ Color( 0.992157, 1, 0, 1 ) ]]
