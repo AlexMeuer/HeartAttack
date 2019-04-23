@@ -75,6 +75,7 @@ tracks/0/keys = {
 }
 
 [node name="Analog" type="Node2D"]
+scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "__editor_plugin_screen__": "2D"
