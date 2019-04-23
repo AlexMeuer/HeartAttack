@@ -4,6 +4,7 @@ export(int) var spiral_count = 2
 var spacing_angle = 0
 
 func _ready():
+	._ready()
 	assert(spiral_count > 0)
 	spacing_angle = 2 * PI / spiral_count
 

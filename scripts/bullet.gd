@@ -1,5 +1,7 @@
 extends 'res://scripts/kinematic_entity.gd'
 
+class_name Bullet
+
 const REFLECTED_COLLISION_LAYER = 6
 
 signal reflect_off_shield

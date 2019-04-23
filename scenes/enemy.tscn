@@ -28,6 +28,7 @@ shape = SubResource( 1 )
 
 [node name="FiringBehaviour" type="Node2D" parent="."]
 script = ExtResource( 3 )
+repeat_count = -1
 
 [node name="Node2D" type="Node2D" parent="FiringBehaviour"]
 script = ExtResource( 4 )
@@ -67,6 +68,6 @@ ttl = 1
 
 [node name="Node2D7" type="Node2D" parent="FiringBehaviour"]
 script = ExtResource( 8 )
-cooldown = 0.01
+cooldown = 0.06
 ttl = 1
 

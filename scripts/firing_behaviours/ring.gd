@@ -4,6 +4,7 @@ export var bullet_count = 12
 var spacing_angle = 0
 
 func _ready():
+	._ready()
 	spacing_angle = 2 * PI / bullet_count
 
 func _shoot():

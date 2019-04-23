@@ -2,11 +2,13 @@ extends Node2D
 
 signal finished
 
-export var is_cyclical = false
+export(int) var repeat_count = 0
+var repeats_so_far = 0
 var children = []
 var index = 0
 
 func _ready():
+	repeats_so_far = 0
 	assert(get_child_count() > 0)
 	for node in get_children():
 		children.append(node)
@@ -17,7 +19,15 @@ func _ready():
 func _start_next_behaviour(expired_node):
 	remove_child(children[index])
 	index = (index + 1) % children.size()
-	if not is_cyclical and index == 0:
-		emit_signal('finished')
-	else:
+	if _should_continue():
 		add_child(children[index])
+	else:
+		emit_signal('finished')
+
+func _should_continue():
+	if index != 0 or repeat_count < 0:
+		return true
+	if repeat_count == 0:
+		return false
+	repeats_so_far += 1
+	return repeats_so_far < repeat_count

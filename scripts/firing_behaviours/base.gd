@@ -12,16 +12,16 @@ var timer = null
 func _ready():
 	assert(bullet_prototype != null)
 	if ttl > 0:
-		var previous_timer = get_node_or_null('Timer')
-		if previous_timer:
-			print('%s: Clearing previous timer')
-			remove_child(previous_timer)
-			previous_timer.queue_free()
-		timer = Timer.new()
-		timer.name = 'Timer'
-		timer.connect("timeout", self, "_on_ttl_expired") 
-		add_child(timer)
+		var timer = get_node_or_null('Timer')
+		if timer:
+			timer.stop()
+		else:
+			timer = Timer.new()
+			timer.name = 'Timer'
+			add_child(timer)
+		timer.connect("timeout", self, "_on_ttl_expired")
 		timer.start(ttl)
+		timer.set_paused(false)
 
 func _process(delta):
 	time_since_shoot += delta
@@ -41,6 +41,4 @@ func _attach_to_root(node):
 	get_tree().get_root().add_child(node)
 	
 func _on_ttl_expired():
-	remove_child(timer)
-	timer.queue_free()
 	emit_signal('ttl_expired', self)

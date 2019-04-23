@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name KinematicEntity
+
 var _motion = Vector2()
 
 func _physics_process(delta):
@@ -8,7 +10,8 @@ func _physics_process(delta):
 		_on_collision(collision)
 
 func _on_collision(collision):
-	print(name+' had a collision with '+collision.get_collider().name)
+	#print(name+' had a collision with '+collision.get_collider().name)
+	pass
 
 func on_receive_collision(other):
 	pass
