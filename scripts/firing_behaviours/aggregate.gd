@@ -3,12 +3,11 @@ extends Node2D
 signal finished
 
 export(int) var repeat_count = 0
-var repeats_so_far = 0
+onready var repeats_so_far = 0
+onready var index = 0
 var children = []
-var index = 0
 
 func _ready():
-	repeats_so_far = 0
 	assert(get_child_count() > 0)
 	for node in get_children():
 		children.append(node)
@@ -16,7 +15,7 @@ func _ready():
 		remove_child(node)
 	add_child(children[index])
 
-func _start_next_behaviour(expired_node):
+func _start_next_behaviour():
 	remove_child(children[index])
 	index = (index + 1) % children.size()
 	if _should_continue():

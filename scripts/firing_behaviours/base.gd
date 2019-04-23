@@ -6,8 +6,7 @@ export(PackedScene) var bullet_prototype = preload('res://scenes/bullet.tscn')
 export(float) var cooldown = 1
 export var launch_speed = 200
 export(int) var ttl = 0
-var time_since_shoot = 0
-var timer = null
+onready var time_since_shoot = 0
 
 func _ready():
 	assert(bullet_prototype != null)
@@ -41,4 +40,4 @@ func _attach_to_root(node):
 	get_tree().get_root().add_child(node)
 	
 func _on_ttl_expired():
-	emit_signal('ttl_expired', self)
+	emit_signal('ttl_expired')

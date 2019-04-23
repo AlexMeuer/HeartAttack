@@ -1,12 +1,11 @@
 extends "res://scripts/firing_behaviours/spiral.gd"
 
 export(int) var spiral_count = 2
-var spacing_angle = 0
+onready var spacing_angle = 2 * PI / spiral_count
 
 func _ready():
 	._ready()
 	assert(spiral_count > 0)
-	spacing_angle = 2 * PI / spiral_count
 
 func _shoot():
 	var starting_angle = angle
