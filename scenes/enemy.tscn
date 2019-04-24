@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scripts/boss_behaviours/simple_boss.gd" type="Script" id=1]
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://art/icon.png" type="Texture" id=2]
 [ext_resource path="res://scripts/firing_behaviours/aggregate.gd" type="Script" id=3]
 [ext_resource path="res://scripts/firing_behaviours/ring.gd" type="Script" id=4]
@@ -13,6 +13,7 @@
 extents = Vector2( 32, 32 )
 
 [node name="Enemy" type="KinematicBody2D"]
+position = Vector2( 100, 100 )
 collision_layer = 2
 collision_mask = 993
 script = ExtResource( 1 )

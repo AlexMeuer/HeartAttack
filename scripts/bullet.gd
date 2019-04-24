@@ -12,12 +12,7 @@ func launch(direction, speed = 1):
 
 func _on_collision(collision):
 	._on_collision(collision)
-	var other = collision.get_collider()
-	
-	if other.has_method('on_receive_collision'):
-		other.on_receive_collision(self)
-	
-	if other.name == 'Shield':
+	if collision.get_collider().name == 'Shield':
 		_reflect(collision)
 	else:
 		destroy()

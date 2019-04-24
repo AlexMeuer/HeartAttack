@@ -11,7 +11,9 @@ func _physics_process(delta):
 
 func _on_collision(collision):
 	#print(name+' had a collision with '+collision.get_collider().name)
-	pass
+	var other = collision.get_collider()
+	if other.has_method('on_receive_collision'):
+		other.on_receive_collision(self)
 
 func on_receive_collision(other):
 	pass

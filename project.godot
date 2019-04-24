@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "KinematicEntity",
 "language": "GDScript",
 "path": "res://scripts/kinematic_entity.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://scripts/level.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
-"KinematicEntity": ""
+"KinematicEntity": "",
+"Level": ""
 }
 
 [application]

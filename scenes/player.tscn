@@ -11,9 +11,6 @@ extents = Vector2( 32, 32 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 31
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.054902, 1, 0, 1 )
