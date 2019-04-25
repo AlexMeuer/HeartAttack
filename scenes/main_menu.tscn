@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://art/icon.png" type="Texture" id=1]
+[ext_resource path="res://fonts/ONEDAY.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/Filxgirl.tres" type="DynamicFont" id=3]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.00259516, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.314014, 0.687357 ), -3.19717, -3.19717, 0, 0, Vector2( 0.711938, 0.669757 ), 1.72937, 1.72937, 0, 0, Vector2( 0.988754, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.0287081, 0.966507 )
+colors = PoolColorArray( 1, 0.7323, 0.496094, 1, 1, 0.492188, 0.492188, 1 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.880623, 0.984 ), 0.0549883, 0.0549883, 0, 0, Vector2( 0.958477, 1 ), 2.66511, 2.66511, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _ready():
+	connect(\"pressed\", self, '_on_pressed')
+
+func _on_pressed():
+	var error = get_tree().change_scene('res://scenes/game.tscn')
+	if error:
+		print('Error changing scene: ', error)"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 1, 0, 0.960784, 0.392157 )
+margin_left = -24.4978
+margin_top = -19.7489
+margin_right = 1960.5
+margin_bottom = 1114.25
+
+[node name="AmbientHearts" type="CPUParticles2D" parent="Panel"]
+position = Vector2( 984.498, 559.749 )
+amount = 80
+lifetime = 10.0
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 960, 640 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 1.0
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+damping = 1.0
+damping_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_amount_curve = SubResource( 2 )
+color_ramp = SubResource( 3 )
+
+[node name="FallingHearts" type="CPUParticles2D" parent="Panel"]
+position = Vector2( 984.498, -80.2511 )
+rotation = 1.5708
+lifetime = 45.0
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 960 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 40.0
+initial_velocity_random = 0.5
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+angle = -120.0
+angle_random = 0.7
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 4 )
+color = Color( 1, 0.4, 0.4, 0.658824 )
+hue_variation = 0.02
+hue_variation_random = 1.0
+
+[node name="PlayButton" type="Button" parent="Panel"]
+margin_left = 635.484
+margin_top = 654.476
+margin_right = 1360.48
+margin_bottom = 910.476
+custom_fonts/font = ExtResource( 2 )
+text = "PLAY"
+script = SubResource( 1 )
+
+[node name="Title" type="Label" parent="Panel"]
+margin_left = 25.0
+margin_top = 249.0
+margin_right = 1944.0
+margin_bottom = 646.0
+custom_fonts/font = ExtResource( 3 )
+text = "Heart Attack"
+align = 1
+valign = 1
+

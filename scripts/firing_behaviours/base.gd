@@ -17,8 +17,8 @@ func _ready():
 		else:
 			timer = Timer.new()
 			timer.name = 'Timer'
+			timer.connect("timeout", self, "_on_ttl_expired")
 			add_child(timer)
-		timer.connect("timeout", self, "_on_ttl_expired")
 		timer.start(ttl)
 		timer.set_paused(false)
 

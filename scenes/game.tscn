@@ -54,10 +54,9 @@ margin_right = 368.0
 margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
-max_value = 4.0
 step = 1.0
-value = 2.0
 
 [connection signal="health_changed" from="Player" to="UI/ProgressBar" method="set_value"]
+[connection signal="health_changed" from="Player" to="UI/ProgressBar" method="set_max" flags=6]
 [connection signal="force_changed" from="UI/AreaAnalogLeft/Analog" to="Player" method="on_left_analog_changed"]
 [connection signal="force_changed" from="UI/AreaAnalogRight/Analog" to="Player" method="on_right_analog_changed"]

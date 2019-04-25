@@ -4,6 +4,7 @@ signal health_changed
 
 const SPEED = 250
 var health = 5
+onready var shield_controller = $ShieldController
 
 func _ready():
 	emit_signal('health_changed', health)
@@ -17,4 +18,4 @@ func on_left_analog_changed(force):
 
 func on_right_analog_changed(force):
 	if force.length() > 0:
-		$ShieldController.look_at(position + Vector2(force.y, force.x))
+		shield_controller.look_at(position + Vector2(force.y, force.x))
