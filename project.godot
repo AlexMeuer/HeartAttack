@@ -33,7 +33,8 @@ _global_script_class_icons={
 [application]
 
 config/name="HeartAttack"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
+boot_splash/image="res://art/icon.png"
 config/icon="res://art/icon.png"
 
 [display]
@@ -52,11 +53,8 @@ pointing/emulate_mouse_from_touch=false
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=0
-vram_compression/import_etc=true
-vram_compression/import_etc2=false
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false
 quality/shading/force_vertex_shading=true
