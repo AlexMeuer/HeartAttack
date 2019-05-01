@@ -4,17 +4,17 @@
 [ext_resource path="res://fonts/ONEDAY.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/Filxgirl.tres" type="DynamicFont" id=3]
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00259516, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.314014, 0.687357 ), -3.19717, -3.19717, 0, 0, Vector2( 0.711938, 0.669757 ), 1.72937, 1.72937, 0, 0, Vector2( 0.988754, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.0287081, 0.966507 )
 colors = PoolColorArray( 1, 0.7323, 0.496094, 1, 1, 0.492188, 0.492188, 1 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.880623, 0.984 ), 0.0549883, 0.0549883, 0, 0, Vector2( 0.958477, 1 ), 2.66511, 2.66511, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Button
 
 func _ready():
@@ -51,8 +51,8 @@ damping = 1.0
 damping_random = 1.0
 angle = 360.0
 angle_random = 1.0
-scale_amount_curve = SubResource( 2 )
-color_ramp = SubResource( 3 )
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
 
 [node name="FallingHearts" type="CPUParticles2D" parent="Panel"]
 position = Vector2( 984.498, -80.2511 )
@@ -69,27 +69,35 @@ angular_velocity_random = 1.0
 angle = -120.0
 angle_random = 0.7
 scale_amount_random = 0.5
-scale_amount_curve = SubResource( 4 )
+scale_amount_curve = SubResource( 3 )
 color = Color( 1, 0.4, 0.4, 0.658824 )
 hue_variation = 0.02
 hue_variation_random = 1.0
 
 [node name="PlayButton" type="Button" parent="Panel"]
-margin_left = 635.484
-margin_top = 654.476
-margin_right = 1360.48
-margin_bottom = 910.476
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -496.145
+margin_top = 121.486
+margin_right = 480.855
+margin_bottom = 377.486
 custom_fonts/font = ExtResource( 2 )
-text = "PLAY"
-script = SubResource( 1 )
+text = "main_menu.play"
+script = SubResource( 4 )
 
 [node name="Title" type="Label" parent="Panel"]
-margin_left = 25.0
-margin_top = 249.0
-margin_right = 1944.0
-margin_bottom = 646.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -967.499
+margin_top = -317.999
+margin_right = 951.501
+margin_bottom = 79.0005
 custom_fonts/font = ExtResource( 3 )
-text = "Heart Attack"
+text = "game_name"
 align = 1
 valign = 1
 
