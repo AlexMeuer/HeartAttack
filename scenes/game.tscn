@@ -70,6 +70,7 @@ step = 1.0
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 416, 320 )
+_motion = Vector2( 100, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1584, 864 )
@@ -85,5 +86,5 @@ anims/Impact = SubResource( 3 )
 [connection signal="force_changed" from="UI/AreaAnalogLeft/Analog" to="Player" method="on_left_analog_changed"]
 [connection signal="force_changed" from="UI/AreaAnalogRight/Analog" to="Player" method="on_right_analog_changed"]
 [connection signal="damaged" from="Player" to="Camera" method="impact"]
-[connection signal="health_changed" from="Player" to="UI/ProgressBar" method="set_value"]
 [connection signal="health_changed" from="Player" to="UI/ProgressBar" method="set_max" flags=6]
+[connection signal="health_changed" from="Player" to="UI/ProgressBar" method="set_value"]

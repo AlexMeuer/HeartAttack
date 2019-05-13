@@ -1,4 +1,5 @@
 extends "res://scripts/firing_behaviours/spiral.gd"
+class_name FiringBehaviourMultiSpiral
 
 export(int) var spiral_count = 2
 onready var spacing_angle = 2 * PI / spiral_count

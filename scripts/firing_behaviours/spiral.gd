@@ -1,4 +1,5 @@
 extends "res://scripts/firing_behaviours/base.gd"
+class_name FiringBehaviourSpiral
 
 export var angle_increment = PI * 0.1
 export var angle = 0

@@ -1,4 +1,5 @@
 extends 'res://scripts/kinematic_entity.gd'
+class_name Player
 
 signal health_changed
 signal damaged
@@ -16,7 +17,7 @@ func on_receive_collision(other):
 	emit_signal('damaged')
 
 func on_left_analog_changed(force):
-	_motion = Vector2(force.x, -force.y) * SPEED
+	set_motion(Vector2(force.x, -force.y) * SPEED)
 
 func on_right_analog_changed(force):
 	if force.length() > 0:

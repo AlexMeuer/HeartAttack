@@ -1,4 +1,5 @@
 extends "res://scripts/firing_behaviours/base.gd"
+class_name FiringBehaviourRing
 
 export var bullet_count = 12
 onready var spacing_angle = 2 * PI / bullet_count

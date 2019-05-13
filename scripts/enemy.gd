@@ -1,8 +1,13 @@
 extends 'res://scripts/kinematic_entity.gd'
+class_name Enemy
 
 signal on_death
 
 export(int) var health = 1
+
+func _ready():
+	# TODO: Perhaps destroy after a second instead of immediately?
+	$VisibilityNotifier2D.connect('screen_exited', self, 'destroy')
 
 func _on_collision(collision):
 	#print(name+' had a collision with '+collision.get_collider().name)

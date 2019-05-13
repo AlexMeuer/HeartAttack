@@ -15,6 +15,51 @@ _global_script_classes=[ {
 "path": "res://scripts/bullet.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scripts/enemy.gd"
+}, {
+"base": "Node",
+"class": "EnemyFactory",
+"language": "GDScript",
+"path": "res://scripts/enemy_factory.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourAggregate",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/aggregate.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourBase",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/base.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourMultiSpiral",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/multi_spiral.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourRing",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/ring.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourRose",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/rose.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourSpiral",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/spiral.gd"
+}, {
+"base": "Node2D",
+"class": "FiringBehaviourSweepArc",
+"language": "GDScript",
+"path": "res://scripts/firing_behaviours/sweep_arc.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "KinematicEntity",
 "language": "GDScript",
 "path": "res://scripts/kinematic_entity.gd"
@@ -23,11 +68,38 @@ _global_script_classes=[ {
 "class": "Level",
 "language": "GDScript",
 "path": "res://scripts/level.gd"
+}, {
+"base": "Node",
+"class": "MovementBehaviourBase",
+"language": "GDScript",
+"path": "res://scripts/movement_behaviours/base.gd"
+}, {
+"base": "Node",
+"class": "MovementBehaviourZigZag",
+"language": "GDScript",
+"path": "res://scripts/movement_behaviours/zig_zag.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scripts/player.gd"
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"Enemy": "",
+"EnemyFactory": "",
+"FiringBehaviourAggregate": "",
+"FiringBehaviourBase": "",
+"FiringBehaviourMultiSpiral": "",
+"FiringBehaviourRing": "",
+"FiringBehaviourRose": "",
+"FiringBehaviourSpiral": "",
+"FiringBehaviourSweepArc": "",
 "KinematicEntity": "",
-"Level": ""
+"Level": "",
+"MovementBehaviourBase": "",
+"MovementBehaviourZigZag": "",
+"Player": ""
 }
 
 [application]
@@ -39,7 +111,7 @@ config/name_ja="ハート・アタック"
 
 [autoload]
 
-BulletFactory="*res://scripts/bullet_factory.gd"
+enemy_factory="*res://scripts/enemy_factory.gd"
 
 [display]
 

@@ -18,7 +18,7 @@ func _on_collision(collision):
 		destroy()
 
 func _reflect(collision):
-	_motion = _motion.bounce(collision.normal) * 4
+	set_motion(get_motion().bounce(collision.normal) * 4)
 	translate(collision.remainder.bounce(collision.normal))
 	set_collision_layer_bit(REFLECTED_COLLISION_LAYER, true) 
 	emit_signal('reflect_off_shield')

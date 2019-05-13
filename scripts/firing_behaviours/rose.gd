@@ -1,4 +1,5 @@
 extends "res://scripts/firing_behaviours/ring.gd"
+class_name FiringBehaviourRose
 
 export(int) var k = 4
 
