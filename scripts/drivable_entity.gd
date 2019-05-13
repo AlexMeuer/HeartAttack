@@ -23,16 +23,6 @@ func brake(delta):
 func turn_toward(point, delta):
 	var displacement = get_global_position() - point
 	var perp_dot = displacement.normalized().tangent().dot(get_forward())
-	if perp_dot > 0:
-		turn_left(delta)
-	else:
-		turn_right(delta)
-
-func turn_left(delta):
-	turn(-_TURN_SPEED * delta)
-
-func turn_right(delta):
-	turn(_TURN_SPEED * delta)
-
-func turn(radians):
-	set_velocity(get_speed() * get_forward().rotated(radians))
+	var rotate_dir = sign(perp_dot * -1)
+	var rotate_amount = min(abs(perp_dot), _TURN_SPEED * delta)
+	set_velocity(get_speed() * get_forward().rotated(rotate_dir * rotate_amount))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/enemy.gd" type="Script" id=1]
 [ext_resource path="res://art/icon.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://scripts/firing_behaviours/multi_spiral.gd" type="Script" id=6]
 [ext_resource path="res://scripts/firing_behaviours/sweep_arc.gd" type="Script" id=7]
 [ext_resource path="res://scripts/firing_behaviours/rose.gd" type="Script" id=8]
-[ext_resource path="res://scripts/movement_behaviours/kamikaze.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -78,5 +77,4 @@ cooldown = 0.06
 ttl = 1
 
 [node name="MovementBehaviour" type="Node2D" parent="."]
-script = ExtResource( 9 )
 
