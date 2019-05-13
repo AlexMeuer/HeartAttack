@@ -10,8 +10,6 @@ func _ready():
 	$VisibilityNotifier2D.connect('screen_exited', self, 'destroy')
 
 func _physics_process(delta):
-	thrust(delta)
-	turn_right(delta)
 	._physics_process(delta)
 
 func _on_collision(collision):

@@ -12,4 +12,4 @@ func _physics_process(delta):
 	#var displacement = _target.get_position() - parent.get_position()
 	#parent.set_velocity(displacement.normalized() * parent.get_speed())
 	parent.thrust(delta)
-	parent.turn_right(delta)
+	parent.turn_toward(_target.get_global_position(), delta)
