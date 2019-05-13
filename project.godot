@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/bullet.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "DrivableEntity",
+"language": "GDScript",
+"path": "res://scripts/drivable_entity.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scripts/enemy.gd"
@@ -86,6 +91,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bullet": "",
+"DrivableEntity": "",
 "Enemy": "",
 "EnemyFactory": "",
 "FiringBehaviourAggregate": "",

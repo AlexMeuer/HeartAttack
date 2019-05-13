@@ -7,7 +7,9 @@ onready var _target = get_tree().get_nodes_in_group('player')[0] # TODO: use _se
 func _set_target(target: Node2D):
 	_target = target
 
-func _process(delta):
-	var parent: KinematicEntity = get_parent()
-	var displacement = _target.get_position() - parent.get_position()
-	parent.set_motion(displacement.normalized() * parent.get_speed())
+func _physics_process(delta):
+	var parent = get_parent()
+	#var displacement = _target.get_position() - parent.get_position()
+	#parent.set_velocity(displacement.normalized() * parent.get_speed())
+	parent.thrust(delta)
+	parent.turn_right(delta)
