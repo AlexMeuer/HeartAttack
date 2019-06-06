@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://scripts/movement_behaviours/base.gd"
 }, {
 "base": "Node",
+"class": "MovementBehaviourStrafe",
+"language": "GDScript",
+"path": "res://scripts/movement_behaviours/strafe.gd"
+}, {
+"base": "Node",
 "class": "MovementBehaviourZigZag",
 "language": "GDScript",
 "path": "res://scripts/movement_behaviours/zig_zag.gd"
@@ -104,6 +109,7 @@ _global_script_class_icons={
 "KinematicEntity": "",
 "Level": "",
 "MovementBehaviourBase": "",
+"MovementBehaviourStrafe": "",
 "MovementBehaviourZigZag": "",
 "Player": ""
 }
@@ -117,7 +123,7 @@ config/name_ja="ハート・アタック"
 
 [autoload]
 
-enemy_factory="*res://scripts/enemy_factory.gd"
+EnemyFactory="*res://scripts/enemy_factory.gd"
 
 [display]
 

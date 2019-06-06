@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/analog.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=4]
 [ext_resource path="res://scenes/enemies/kamikaze.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/level_01.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 0, 0, 0.627451 )
@@ -84,8 +85,11 @@ script = ExtResource( 4 )
 anims/Impact = SubResource( 3 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1010.92, 116.289 )
+position = Vector2( 950, -580 )
 _velocity = Vector2( 0, 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
 [connection signal="force_changed" from="UI/AreaAnalogLeft/Analog" to="Player" method="on_left_analog_changed"]
 [connection signal="force_changed" from="UI/AreaAnalogRight/Analog" to="Player" method="on_right_analog_changed"]
