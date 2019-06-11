@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/laser_weapon.gd" type="Script" id=1]
+[ext_resource path="res://art/crosshair_triangle.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=3]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("LaserLine:width")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 2.4, 2.7, 2.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 2.0, 2.0, 20.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deal_damage"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.7, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "pause_tracking"
+}, {
+"args": [  ],
+"method": "resume_tracking"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Crosshair/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "WarmUp", -1, 1.0, false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "WarmUp"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("..:crosshair_interpolation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.01, -0.249141, -0.00161718, 1.7, 0.0110348, 0.2, -0.14, -0.223907, 0.0361801, 0.0578641 ),
+"times": PoolRealArray( 0, 3 )
+}
+
+[node name="LaserWeapon" type="Node2D"]
+script = ExtResource( 1 )
+crosshair_interpolation = 0.0
+
+[node name="LaserLine" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 0.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 45
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/LaserBlast = SubResource( 3 )
+
+[node name="Crosshair" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Crosshair"]
+autoplay = "WarmUp"
+anims/WarmUp = SubResource( 2 )
+
+[connection signal="firing" from="." to="AnimationPlayer" method="play" binds= [ "LaserBlast" ]]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]
