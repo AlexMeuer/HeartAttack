@@ -12,6 +12,9 @@ func _ready():
 	emit_signal('health_changed', health)
 
 func on_receive_collision(other):
+	take_damage()
+
+func take_damage():
 	health -= 1
 	emit_signal('health_changed', health)
 	emit_signal('damaged')

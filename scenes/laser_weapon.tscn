@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/laser_weapon.gd" type="Script" id=1]
-[ext_resource path="res://art/crosshair_triangle.png" type="Texture" id=2]
+[ext_resource path="res://scripts/drivable_entity.gd" type="Script" id=2]
+[ext_resource path="res://art/icon.png" type="Texture" id=3]
+[ext_resource path="res://scripts/movement_behaviours/strafe.gd" type="Script" id=4]
+[ext_resource path="res://scenes/shield.tscn" type="PackedScene" id=5]
+[ext_resource path="res://art/crosshair_triangle.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 30, 30 )
+
+[sub_resource type="Animation" id=1]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("LaserLine:width")
@@ -73,7 +80,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.01, -0.249141, -0.00161718, 1.7, 0.0110348, 0.2, -0.14, -0.223907, 0.0361801, 0.0578641 ),
+"points": PoolRealArray( 0.01, -0.249141, -0.00161718, 1.7, 0.0110348, 2, -0.14, -0.223907, 0.0361801, 0.0578641 ),
 "times": PoolRealArray( 0, 3 )
 }
 
@@ -81,21 +88,45 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 crosshair_interpolation = 0.0
 
+[node name="DummyTarget" type="KinematicBody2D" parent="."]
+position = Vector2( 620, 670 )
+script = ExtResource( 2 )
+_velocity = Vector2( 200, 0 )
+face_travel_direction = false
+
+[node name="Timer" type="Timer" parent="DummyTarget"]
+wait_time = 6.0
+autostart = true
+
+[node name="Sprite" type="Sprite" parent="DummyTarget"]
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+time = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DummyTarget"]
+shape = SubResource( 3 )
+
+[node name="Shield" parent="DummyTarget" instance=ExtResource( 5 )]
+position = Vector2( 0, -120 )
+
 [node name="LaserLine" type="Line2D" parent="."]
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 0.0
 default_color = Color( 1, 0, 0, 1 )
 texture_mode = 45
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/LaserBlast = SubResource( 3 )
+anims/LaserBlast = SubResource( 1 )
 
 [node name="Crosshair" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Crosshair"]
 autoplay = "WarmUp"
 anims/WarmUp = SubResource( 2 )
 
 [connection signal="firing" from="." to="AnimationPlayer" method="play" binds= [ "LaserBlast" ]]
+[connection signal="timeout" from="DummyTarget/Timer" to="." method="fire"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

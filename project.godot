@@ -135,6 +135,7 @@ config/name_ja="ハート・アタック"
 
 [autoload]
 
+Global="*res://scripts/global.gd"
 EnemyFactory="*res://scripts/enemy_factory.gd"
 
 [display]
