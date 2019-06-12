@@ -27,6 +27,5 @@ func start_timer():
 func _change_zig_zag():
 	zigging = not zigging
 	var parent = get_parent()
-	var new_motion = parent.get_velocity().reflect(reflect_vector)
-	parent.set_velocity(new_motion)
+	parent.velocity = parent.velocity.reflect(reflect_vector)
 	start_timer()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/entity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/shield.gd" type="Script" id=2]
-[ext_resource path="res://art/shield.png" type="Texture" id=3]
+[ext_resource path="res://scenes/bullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/shield.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 height = 180.0
@@ -10,12 +11,83 @@ height = 180.0
 [sub_resource type="CapsuleShape2D" id=2]
 height = 25.0
 
+[sub_resource type="Animation" id=4]
+resource_name = "LaserFire"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.368627, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1.1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire_laser"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "LaserWindup"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.517647, 0.00392157, 0.00392157, 1 ), Color( 0.607843, 0.156863, 0, 1 ), Color( 0.517647, 0.00392157, 0.00392157, 1 ), Color( 0.607843, 0.156863, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ) ]
+}
+
 [node name="Shield" instance=ExtResource( 1 )]
 collision_mask = 14
 script = ExtResource( 2 )
+projectile = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 0, -6 )
@@ -31,4 +103,8 @@ shape = SubResource( 2 )
 position = Vector2( 103, 0 )
 rotation = -1.06465
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+anims/LaserFire = SubResource( 4 )
+anims/LaserWindup = SubResource( 3 )
 

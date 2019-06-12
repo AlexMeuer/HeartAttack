@@ -26,7 +26,7 @@ class SpawningPipeline:
 		return with_velocity(direction.normalized() * speed)
 	
 	func with_velocity(velocity: Vector2):
-		_enemy.set_velocity(velocity)
+		_enemy.velocity = velocity
 		return self
 	
 	func done():

@@ -1,15 +1,15 @@
 extends KinematicBody2D
 class_name KinematicEntity
 
-export var _velocity = Vector2()
+export var velocity = Vector2()
 export var face_travel_direction = true
 
 func _physics_process(delta):
-	var collision = move_and_collide(_velocity * delta)
+	var collision = move_and_collide(velocity * delta)
 	if collision:
 		_on_collision(collision)
 	if face_travel_direction:
-		look_at(global_position+get_velocity())
+		look_at(global_position + velocity)
 
 func _on_collision(collision):
 	#print(name+' had a collision with '+collision.get_collider().name)
@@ -19,23 +19,17 @@ func _on_collision(collision):
 
 func on_receive_collision(other):
 	pass
-	
-func set_velocity(velocity):
-	_velocity = velocity
-
-func get_velocity():
-	return _velocity
 
 func set_direction(direction):
-	set_velocity(direction.normalized() * get_speed())
+	velocity = direction.normalized() * get_speed()
 	
 func get_speed():
-	return get_velocity().length()
+	return velocity.length()
 
 func get_forward():
 	if get_speed() <= 0:
 		return Vector2.RIGHT
-	return get_velocity().normalized()
+	return velocity.normalized()
 
 func destroy():
 	# It turns out queue_free is enough. Removing the child like this can cause the game to hard-crash!

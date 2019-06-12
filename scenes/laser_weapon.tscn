@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/laser_weapon.gd" type="Script" id=1]
 [ext_resource path="res://scripts/drivable_entity.gd" type="Script" id=2]
@@ -7,10 +7,10 @@
 [ext_resource path="res://scenes/shield.tscn" type="PackedScene" id=5]
 [ext_resource path="res://art/crosshair_triangle.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("LaserLine:width")
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 2.4, 2.7, 2.8, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 2.4, 2.75, 2.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 2, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0, 2.0, 2.0, 20.0, 0.0 ]
 }
@@ -70,8 +70,45 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "WarmUp"
+[sub_resource type="Animation" id=3]
+resource_name = "CoolDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.498039, 0.498039, 0.498039, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.21, 36.4817, 0, -0.29, -34.6822, 0.03, 2.65919, 0, -0.07, -1.24386, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 0.5 )
+}
+
+[sub_resource type="Animation" id=4]
 length = 3.0
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("..:crosshair_interpolation")
@@ -83,15 +120,48 @@ tracks/0/keys = {
 "points": PoolRealArray( 0.01, -0.249141, -0.00161718, 1.7, 0.0110348, 2, -0.14, -0.223907, 0.0361801, 0.0578641 ),
 "times": PoolRealArray( 0, 3 )
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Color( 0.498039, 0.498039, 0.498039, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath(".:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 360, -0.25, 0, 1.6, -5.94275, 0, -2.31, -4.4343, 0.25, 0 ),
+"times": PoolRealArray( 0, 3 )
+}
 
 [node name="LaserWeapon" type="Node2D"]
 script = ExtResource( 1 )
-crosshair_interpolation = 0.0
 
 [node name="DummyTarget" type="KinematicBody2D" parent="."]
 position = Vector2( 620, 670 )
 script = ExtResource( 2 )
-_velocity = Vector2( 200, 0 )
+velocity = Vector2( 100, 0 )
 face_travel_direction = false
 
 [node name="Timer" type="Timer" parent="DummyTarget"]
@@ -104,7 +174,7 @@ script = ExtResource( 4 )
 time = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DummyTarget"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Shield" parent="DummyTarget" instance=ExtResource( 5 )]
 position = Vector2( 0, -120 )
@@ -118,14 +188,16 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/LaserBlast = SubResource( 1 )
+anims/LaserBlast = SubResource( 2 )
 
 [node name="Crosshair" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.780392 )
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Crosshair"]
 autoplay = "WarmUp"
-anims/WarmUp = SubResource( 2 )
+anims/CoolDown = SubResource( 3 )
+anims/WarmUp = SubResource( 4 )
 
 [connection signal="firing" from="." to="AnimationPlayer" method="play" binds= [ "LaserBlast" ]]
 [connection signal="timeout" from="DummyTarget/Timer" to="." method="fire"]

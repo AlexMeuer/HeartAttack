@@ -17,4 +17,4 @@ func _ready():
 
 func _change_direction():
 	var parent = get_parent()
-	parent.set_velocity(-parent.get_velocity())
+	parent.velocity = -parent.velocity

@@ -7,7 +7,7 @@ const REFLECTED_COLLISION_LAYER = 6
 signal reflect_off_shield
 
 func launch(direction, speed = 1):
-	set_velocity(direction * speed)
+	velocity = direction * speed
 	$VisibilityNotifier2D.connect('screen_exited', self, 'destroy')
 
 func _on_collision(collision):
@@ -18,7 +18,7 @@ func _on_collision(collision):
 		destroy()
 
 func _reflect(collision):
-	set_velocity((get_velocity().bounce(collision.normal) * 4).clamped(600))
+	velocity = (velocity.bounce(collision.normal) * 4).clamped(600)
 	move_and_collide(collision.remainder.bounce(collision.normal))
 	set_collision_layer_bit(REFLECTED_COLLISION_LAYER, true)
 	emit_signal('reflect_off_shield')

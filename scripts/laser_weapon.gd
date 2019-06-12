@@ -3,11 +3,14 @@ class_name LaserWeapon
 
 signal firing
 
-export var crosshair_interpolation := 0.01
-onready var crosshair := $Crosshair
-onready var laserLine := $LaserLine
-onready var animator := $AnimationPlayer
-onready var _target: Node2D = $DummyTarget
+export(float) var cooldown_duration = 1.0
+export(float) var target_lead_time = 0.5
+
+var crosshair_interpolation := 0.01
+onready var _crosshair := $Crosshair
+onready var _laserLine := $LaserLine
+onready var _crosshair_animator = $Crosshair/AnimationPlayer
+onready var _target: KinematicEntity = $DummyTarget
 var _is_tracking := true
 var _is_firing := false
 var _last_raytrace_result: Dictionary
@@ -22,9 +25,7 @@ func track(target: Node2D):
 	_target = target
 	_target.connect('tree_exiting', self, 'clear_target')
 	
-	var crosshair_animator = $Crosshair/AnimationPlayer
-	crosshair_animator.stop()
-	crosshair_animator.play('WarmUp')
+	_crosshair_animator.queue('WarmUp')
 
 func clear_target():
 	if (!_target):
@@ -40,7 +41,10 @@ func fire():
 	emit_signal("firing")
 
 func deal_damage():
-	push_warning(name+'::deal_damage() is not fully implemented.')
+	_crosshair_animator.play("CoolDown")
+	# Wait for the cooldown duration and _then_ queue the warm up animation.
+	get_tree().create_timer(cooldown_duration).connect("timeout", _crosshair_animator, 'queue', ['WarmUp'], CONNECT_ONESHOT)
+	
 	if _last_raytrace_result.empty():
 		return
 		
@@ -66,7 +70,8 @@ func _physics_process(delta):
 		return
 	
 	if _is_tracking:
-		crosshair.set_global_position(crosshair.global_position.linear_interpolate(_target.global_position, crosshair_interpolation * delta))
+		var lead_position = _target.global_position + (_target.velocity * target_lead_time)
+		_crosshair.global_position = _crosshair.global_position.linear_interpolate(lead_position, crosshair_interpolation * delta)
 	
 	if _is_firing:
 		_update_laser_line()
@@ -75,13 +80,13 @@ func _physics_process(delta):
 func _update_laser_line():
 	# https://docs.godotengine.org/en/3.1/tutorials/physics/ray-casting.html
 	var space_state = get_world_2d().direct_space_state
-	_last_raytrace_result = space_state.intersect_ray(global_position, crosshair.global_position, [self], Global.COLLISION_LAYER_SHIELD)
+	_last_raytrace_result = space_state.intersect_ray(get_global_position(), _crosshair.global_position, [self], Global.COLLISION_LAYER_SHIELD)
 	
 	if _last_raytrace_result.empty():
-		laserLine.set_point_position(1, crosshair.position)
+		_laserLine.set_point_position(1, _crosshair.position)
 		return
 	
-	laserLine.set_point_position(1, _last_raytrace_result.position)
+	_laserLine.set_point_position(1, _last_raytrace_result.position)
 
 func _on_animation_finished(anim_name):
 	if anim_name == 'LaserBlast':
