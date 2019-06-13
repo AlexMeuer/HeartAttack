@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/levels/base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/levels/level_01.gd" type="Script" id=2]
+[ext_resource path="res://scenes/enemies/spiral_shooter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemies/kamikaze.tscn" type="PackedScene" id=4]
+
+[node name="Level" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="AreaAnalogLeft" parent="UI" index="0"]
+margin_left = 0.0
+margin_right = 958.0
+
+[node name="Enemy2" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 310, 230 )
+velocity = Vector2( 0, 0 )
+
+[node name="Enemy" parent="." index="4" instance=ExtResource( 4 )]
+position = Vector2( 590, 64 )
+velocity = Vector2( 0, 0 )
+

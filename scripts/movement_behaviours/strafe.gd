@@ -5,7 +5,6 @@ export (float)var time = 1
 onready var timer = get_node_or_null('Timer')
 
 func _ready():
-	._ready()
 	if not timer:
 		timer = Timer.new()
 		timer.name = 'Timer'

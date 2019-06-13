@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "EnemyFactory",
 "language": "GDScript",
-"path": "res://scripts/enemy_factory.gd"
+"path": "res://scripts/spawning/enemy_factory.gd"
 }, {
 "base": "Node2D",
 "class": "FiringBehaviourAggregate",
@@ -136,7 +136,7 @@ config/name_ja="ハート・アタック"
 [autoload]
 
 Global="*res://scripts/global.gd"
-EnemyFactory="*res://scripts/enemy_factory.gd"
+Edge="*res://scripts/spawning/edge.gd"
 
 [display]
 

@@ -9,7 +9,6 @@ var zigging = true
 onready var timer = get_node_or_null('Timer')
 
 func _ready():
-	._ready()
 	assert(reflect_vector.length() > 0)
 	reflect_vector = reflect_vector.normalized()
 	if not timer:
