@@ -21,7 +21,6 @@ class CascadeSpawnArgs:
 	var space_between: float = -1 setget ,get_spacing
 	var delay_between: float = 0.5
 	var reverse: bool = false
-	var instance_modifier # TODO - a funcref to modify instances once they're created
 	
 	func _init(edge_: int, enemy_type: int):
 		edge = edge_
@@ -34,7 +33,8 @@ class CascadeSpawnArgs:
 			push_error('\'%d\' is not a valid enemy type! (See EnemyType enum)' % enemy_type)
 	
 	func instantiate_into_cascade(index: int):
-		return edge_info.place_into_cascade(blueprint.instance(), amount - index if reverse else index, get_spacing())
+		var i = amount - index if reverse else index
+		return edge_info.place_into_cascade(blueprint.instance(), i, get_spacing())
 	
 	func set_edge(new_edge: int):
 		var new_edge_info = Edge.get_edge_spawning_info(new_edge)
@@ -66,10 +66,13 @@ class CascadeSpawnArgs:
 		else:
 			return Global.SCREEN_HEIGHT / float(amount+1)
 
-func spawn_cascade(args: CascadeSpawnArgs):
+func spawn_cascade(args: CascadeSpawnArgs, visitor: FuncRef = null):
 	assert(args)
 	var spacing = args.space_between
 	for i in range(1, args.amount+1):
-		add_child(args.instantiate_into_cascade(i))
+		var enemy: DrivableEntity = args.instantiate_into_cascade(i)
+		if visitor:
+			visitor.call_func(enemy)
+		add_child(enemy)
 		if args.delay_between > 0:
 			yield(get_tree().create_timer(args.delay_between), 'timeout')
