@@ -21,6 +21,7 @@ class CascadeSpawnArgs:
 	var space_between: float = -1 setget ,get_spacing
 	var delay_between: float = 0.5
 	var reverse: bool = false
+	var offset: Vector2 = Vector2.ZERO
 	
 	func _init(edge_: int, enemy_type: int):
 		edge = edge_
@@ -34,7 +35,9 @@ class CascadeSpawnArgs:
 	
 	func instantiate_into_cascade(index: int):
 		var i = amount - index if reverse else index
-		return edge_info.place_into_cascade(blueprint.instance(), i, get_spacing())
+		var inst = edge_info.place_into_cascade(blueprint.instance(), i, get_spacing())
+		inst.translate(offset)
+		return inst
 	
 	func set_edge(new_edge: int):
 		var new_edge_info = Edge.get_edge_spawning_info(new_edge)
@@ -76,3 +79,6 @@ func spawn_cascade(args: CascadeSpawnArgs, visitor: FuncRef = null):
 		add_child(enemy)
 		if args.delay_between > 0:
 			yield(get_tree().create_timer(args.delay_between), 'timeout')
+
+func spawn(formation: NodePath, edge: int) -> Node2D: # TODO: formation/wave class
+	return null # TODO: implement this function

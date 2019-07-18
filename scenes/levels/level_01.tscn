@@ -1,22 +1,181 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/levels/base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/levels/level_01.gd" type="Script" id=2]
 [ext_resource path="res://scenes/enemies/spiral_shooter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/enemies/kamikaze.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemies/machine_gunner.tscn" type="PackedScene" id=7]
 
 [node name="Level" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="UI" parent="." index="0"]
+editor/display_folded = false
 
 [node name="AreaAnalogLeft" parent="UI" index="0"]
 margin_left = 0.0
 margin_right = 958.0
 
 [node name="Enemy2" parent="." index="3" instance=ExtResource( 3 )]
-position = Vector2( 310, 230 )
-velocity = Vector2( 0, 0 )
+position = Vector2( -130, 410 )
+velocity = Vector2( 100, 0 )
 
 [node name="Enemy" parent="." index="4" instance=ExtResource( 4 )]
 position = Vector2( 590, 64 )
-velocity = Vector2( 0, 0 )
+
+[node name="Enemy3" parent="." index="5" instance=ExtResource( 5 )]
+modulate = Color( 1, 0.74902, 0, 1 )
+position = Vector2( 390, 240 )
+
+[node name="Spawn Group 1" type="Position2D" parent="." index="6"]
+editor/display_folded = true
+
+[node name="Spawner" parent="Spawn Group 1" index="0" instance=ExtResource( 6 )]
+position = Vector2( 240, -110 )
+_thing_to_spawn = ExtResource( 7 )
+
+[node name="Spawner2" parent="Spawn Group 1" index="1" instance=ExtResource( 6 )]
+position = Vector2( 410, -180 )
+_thing_to_spawn = ExtResource( 7 )
+
+[node name="Spawner3" parent="Spawn Group 1" index="2" instance=ExtResource( 6 )]
+position = Vector2( 580, -240 )
+_thing_to_spawn = ExtResource( 7 )
+
+[node name="Spawner4" parent="Spawn Group 1" index="3" instance=ExtResource( 6 )]
+position = Vector2( 740, -310 )
+_thing_to_spawn = ExtResource( 7 )
+
+[node name="Spawner5" parent="Spawn Group 1" index="4" instance=ExtResource( 6 )]
+position = Vector2( 880, -370 )
+_thing_to_spawn = ExtResource( 7 )
+
+[node name="Spawner6" parent="Spawn Group 1" index="5" instance=ExtResource( 6 )]
+position = Vector2( 1680, -120 )
+_thing_to_spawn = ExtResource( 7 )
+_delay = 10.0
+
+[node name="Spawner7" parent="Spawn Group 1" index="6" instance=ExtResource( 6 )]
+position = Vector2( 1600, -120 )
+_thing_to_spawn = ExtResource( 7 )
+_delay = 10.0
+
+[node name="Spawner8" parent="Spawn Group 1" index="7" instance=ExtResource( 6 )]
+position = Vector2( 1140, -290 )
+_thing_to_spawn = ExtResource( 7 )
+_delay = 15.0
+
+[node name="Spawner9" parent="Spawn Group 1" index="8" instance=ExtResource( 6 )]
+position = Vector2( 900, -290 )
+_thing_to_spawn = ExtResource( 7 )
+_delay = 15.0
+
+[node name="Spawner10" parent="Spawn Group 1" index="9" instance=ExtResource( 6 )]
+position = Vector2( 1020, -430 )
+_thing_to_spawn = ExtResource( 7 )
+_delay = 15.0
+
+[node name="Spawn group 2" type="Position2D" parent="." index="7"]
+
+[node name="Spawner11" parent="Spawn group 2" index="0" instance=ExtResource( 6 )]
+position = Vector2( -60, 810 )
+_thing_to_spawn = ExtResource( 3 )
+_delay = 30.0
+
+[node name="Spawner12" parent="Spawn group 2" index="1" instance=ExtResource( 6 )]
+position = Vector2( -60, 810 )
+_thing_to_spawn = ExtResource( 3 )
+_delay = 40.0
+
+[node name="Spawner13" parent="Spawn group 2" index="2" instance=ExtResource( 6 )]
+position = Vector2( -60, 670 )
+_thing_to_spawn = ExtResource( 3 )
+_delay = 40.0
+
+[node name="Spawner14" parent="Spawn group 2" index="3" instance=ExtResource( 6 )]
+position = Vector2( -60, 530 )
+_thing_to_spawn = ExtResource( 3 )
+_delay = 40.0
+
+[node name="Spawner15" parent="Spawn group 2" index="4" instance=ExtResource( 6 )]
+position = Vector2( -60, 410 )
+_thing_to_spawn = ExtResource( 3 )
+_delay = 40.0
+
+[node name="Spawner16" parent="Spawn group 2" index="5" instance=ExtResource( 6 )]
+position = Vector2( -60, 280 )
+_thing_to_spawn = ExtResource( 3 )
+_delay = 40.0
+
+[node name="Spawner17" parent="Spawn group 2" index="6" instance=ExtResource( 6 )]
+position = Vector2( -60, 280 )
+_thing_to_spawn = ExtResource( 3 )
+
+[node name="Spawner18" parent="Spawn group 2" index="7" instance=ExtResource( 6 )]
+position = Vector2( 1990, -70 )
+_thing_to_spawn = ExtResource( 3 )
+
+[node name="Spawner19" parent="Spawn group 2" index="8" instance=ExtResource( 6 )]
+position = Vector2( 410, -330 )
+_thing_to_spawn = ExtResource( 3 )
+
+[node name="Spawn group 3" type="Position2D" parent="." index="8"]
+editor/display_folded = true
+
+[node name="Spawner21" parent="Spawn group 3" index="0" instance=ExtResource( 6 )]
+position = Vector2( 40, -120 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner22" parent="Spawn group 3" index="1" instance=ExtResource( 6 )]
+position = Vector2( 110, -160 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner23" parent="Spawn group 3" index="2" instance=ExtResource( 6 )]
+position = Vector2( 210, -140 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner24" parent="Spawn group 3" index="3" instance=ExtResource( 6 )]
+position = Vector2( 250, -160 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner25" parent="Spawn group 3" index="4" instance=ExtResource( 6 )]
+position = Vector2( 280, -130 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner26" parent="Spawn group 3" index="5" instance=ExtResource( 6 )]
+position = Vector2( 580, -200 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner27" parent="Spawn group 3" index="6" instance=ExtResource( 6 )]
+position = Vector2( 1110, -210 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner28" parent="Spawn group 3" index="7" instance=ExtResource( 6 )]
+position = Vector2( 880, -130 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner29" parent="Spawn group 3" index="8" instance=ExtResource( 6 )]
+position = Vector2( 168, -280 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner30" parent="Spawn group 3" index="9" instance=ExtResource( 6 )]
+position = Vector2( -180, 80 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
+
+[node name="Spawner31" parent="Spawn group 3" index="10" instance=ExtResource( 6 )]
+position = Vector2( -260, 300 )
+_thing_to_spawn = ExtResource( 4 )
+_delay = 40.0
 

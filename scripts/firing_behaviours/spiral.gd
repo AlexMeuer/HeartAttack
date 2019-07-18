@@ -1,8 +1,8 @@
 extends "res://scripts/firing_behaviours/base.gd"
 class_name FiringBehaviourSpiral
 
-export var angle_increment = PI * 0.1
-export var angle = 0
+export (float)var angle_increment = PI * 0.1
+export (float)var angle = 0
 
 func _shoot():
 	var bullet = _create_bullet()

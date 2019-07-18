@@ -3,8 +3,9 @@ extends "res://scripts/spawning/enemy_factory.gd"
 onready var _player = $Player
 
 func _ready():
-	while(true):
-		var cascada := CascadeSpawnArgs.new(Edge.TOP, EnemyType.SPIRAL_SHOOTER)
+	while(false):
+	#while(true):
+		var cascada := CascadeSpawnArgs.new(Edge.TOP, EnemyType.STRAIGHT)
 		cascada.amount = 10
 		
 		var visitor = funcref(self, '_visit')
@@ -29,4 +30,6 @@ func _ready():
 		spawn_cascade(cascada, visitor)
 
 func _visit(instance: Enemy):
+	# If we yield in here, we run the risk of
+	# the instance being freed before we continue!
 	instance.set_direction(_player.position - instance.position)

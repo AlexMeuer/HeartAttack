@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/enemies/base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/firing_behaviours/sweep_arc.gd" type="Script" id=2]
+
+[node name="MachineGunner" index="0" instance=ExtResource( 1 )]
+velocity = Vector2( 0, 50 )
+
+[node name="FiringBehaviourSweepArc" type="Node2D" parent="." index="3"]
+script = ExtResource( 2 )
+cooldown = 0.22
+angle_increment = 0.047
+angle = 1.571
+start_arc_angle = 1.509
+end_arc_angle = 1.633
+

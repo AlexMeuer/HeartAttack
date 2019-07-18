@@ -10,10 +10,15 @@ var crosshair_interpolation := 0.01
 onready var _crosshair := $Crosshair
 onready var _laserLine := $LaserLine
 onready var _crosshair_animator = $Crosshair/AnimationPlayer
-onready var _target: KinematicEntity = $DummyTarget
+var _target: KinematicEntity
 var _is_tracking := true
 var _is_firing := false
 var _last_raytrace_result: Dictionary
+
+func _ready():
+	yield(get_tree().create_timer(10), 'timeout')
+	_crosshair_animator.stop()
+	track($DummyTarget)
 
 func track(target: Node2D):
 	if (_target == target):

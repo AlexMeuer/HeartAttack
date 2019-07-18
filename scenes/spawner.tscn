@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Position2D
+
+export (PackedScene) var _thing_to_spawn
+export (float) var _delay = 5
+
+func _ready():
+	if (!is_instance_valid(_thing_to_spawn)):
+		push_error('%s: Nothing given to spawn.' % name)
+		queue_free()
+		return
+	if (sign(_delay) != 1):
+		push_error('%s: Delay must be a positive number, but was %d.' % [name, _delay])
+		queue_free()
+		return
+	yield(get_tree().create_timer(_delay), 'timeout')
+	var thing = _thing_to_spawn.instance()
+	thing.connect('tree_exited', self, 'queue_free')
+	add_child(thing)"
+
+[node name="Spawner" type="Position2D"]
+script = SubResource( 1 )
+

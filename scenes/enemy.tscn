@@ -21,6 +21,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+velocity = Vector2( 100, 0 )
 face_travel_direction = false
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -39,13 +40,13 @@ repeat_count = -1
 
 [node name="Node2D" type="Node2D" parent="FiringBehaviour"]
 script = ExtResource( 4 )
-cooldown = 0.5
 launch_speed = 150
 ttl = 3
+bullet_count = 50
 
 [node name="Node2D2" type="Node2D" parent="FiringBehaviour"]
 script = ExtResource( 5 )
-cooldown = 0.2
+cooldown = 0.25
 launch_speed = 175
 ttl = 4
 
@@ -60,7 +61,6 @@ script = ExtResource( 6 )
 cooldown = 0.1
 ttl = 4
 angle_increment = -0.314
-spiral_count = 3
 
 [node name="Node2D5" type="Node2D" parent="FiringBehaviour"]
 script = ExtResource( 7 )

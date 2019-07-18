@@ -4,6 +4,7 @@
 [ext_resource path="res://scripts/firing_behaviours/spiral.gd" type="Script" id=2]
 
 [node name="Enemy" index="0" instance=ExtResource( 1 )]
+velocity = Vector2( 120, 0 )
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0.87451, 0, 1, 1 )
